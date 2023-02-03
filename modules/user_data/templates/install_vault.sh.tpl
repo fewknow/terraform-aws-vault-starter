@@ -11,8 +11,8 @@ apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_re
 apt-get update
 apt-get install -y awscli jq unzip
 
-wget https://releases.hashicorp.com/vault/1.12.2+ent/vault_${version}+ent_linux_amd64.zip
-unzip vault_${version}+ent_linux_amd64.zip
+wget https://releases.hashicorp.com/vault/1.12.2+ent/vault_${vault_version}+ent_linux_amd64.zip
+unzip vault_${vault_version}+ent_linux_amd64.zip
 mv vault /usr/bin/
 
 #set enterprise license

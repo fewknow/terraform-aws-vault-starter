@@ -66,3 +66,4 @@ variable "vpc_id" {
 variable "hosted_zone_id" {
 
 }
+variable "lb_protocol" {}

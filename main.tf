@@ -40,6 +40,7 @@ module "loadbalancer" {
   vault_sg_id             = module.vm.vault_sg_id
   vpc_id                  = module.networking.vpc_id
   hosted_zone_id          = var.hosted_zone_id
+  lb_protocol             = var.lb_protocol
 }
 
 module "networking" {

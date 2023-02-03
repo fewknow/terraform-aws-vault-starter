@@ -29,3 +29,7 @@ output "vault_target_group_arn" {
   description = "Target group ARN to register Vault nodes with"
   value       = aws_lb_target_group.vault.arn
 }
+
+output "vault_dns" {
+  value = aws_route53_record.dns_entry.fqdn
+}

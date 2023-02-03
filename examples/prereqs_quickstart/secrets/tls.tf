@@ -27,11 +27,11 @@ resource "tls_self_signed_cert" "ca" {
   ]
 
   is_ca_certificate = true
+  key_algorithm      = "RSA"
 
   #  provisioner "local-exec" {
   #    command = "echo '${tls_self_signed_cert.ca.cert_pem}' > ./vault-ca.pem"
   #  }
-  key_algorithm = ""
 }
 
 # Generate another private key. This one will be used
@@ -60,7 +60,7 @@ resource "tls_cert_request" "server" {
   ip_addresses = [
     "127.0.0.1",
   ]
-  key_algorithm = ""
+  key_algorithm      = "RSA"
 }
 
 resource "tls_locally_signed_cert" "server" {
@@ -81,7 +81,8 @@ resource "tls_locally_signed_cert" "server" {
   #  provisioner "local-exec" {
   #    command = "echo '${tls_locally_signed_cert.server.cert_pem}' > ./vault-crt.pem"
   #  }
-  ca_key_algorithm = ""
+  ca_key_algorithm      = "RSA"
+
 }
 
 locals {

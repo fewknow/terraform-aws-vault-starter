@@ -22,6 +22,10 @@ output "vault_lb_dns_name" {
   value       = module.loadbalancer.vault_lb_dns_name
 }
 
+output "vault_dns" {
+  value = module.loadbalancer.vault_dns
+}
+
 output "vault_lb_zone_id" {
   description = "Zone ID of Vault load balancer"
   value       = module.loadbalancer.vault_lb_zone_id

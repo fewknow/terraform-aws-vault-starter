@@ -20,6 +20,7 @@ module "vpc" {
 module "secrets" {
   source = "./secrets/"
 
+  shared_san = "*.fewknow.io"
   resource_name_prefix = var.resource_name_prefix
 }
 

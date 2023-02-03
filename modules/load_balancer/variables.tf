@@ -62,3 +62,7 @@ variable "vpc_id" {
   type        = string
   description = "VPC ID where Vault will be deployed"
 }
+
+variable "hosted_zone_id" {
+
+}

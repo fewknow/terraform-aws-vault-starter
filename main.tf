@@ -9,7 +9,6 @@ data "aws_region" "current" {}
 
 module "iam" {
   source = "./modules/iam"
-
   aws_region                  = data.aws_region.current.name
   kms_key_arn                 = module.kms.kms_key_arn
   permissions_boundary        = var.permissions_boundary
@@ -20,7 +19,6 @@ module "iam" {
 
 module "kms" {
   source = "./modules/kms"
-
   common_tags               = var.common_tags
   kms_key_deletion_window   = var.kms_key_deletion_window
   resource_name_prefix      = var.resource_name_prefix
@@ -41,6 +39,7 @@ module "loadbalancer" {
   ssl_policy              = var.ssl_policy
   vault_sg_id             = module.vm.vault_sg_id
   vpc_id                  = module.networking.vpc_id
+  hosted_zone_id          = var.hosted_zone_id
 }
 
 module "networking" {

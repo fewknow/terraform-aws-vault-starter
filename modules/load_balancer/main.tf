@@ -18,7 +18,6 @@ resource "aws_security_group" "vault_lb" {
 }
 
 resource "aws_security_group_rule" "vault_lb_inbound" {
-  count             = var.lb_type == "application" && var.allowed_inbound_cidrs != null ? 1 : 0
   description       = "Allow specified CIDRs access to load balancer on port 8200"
   security_group_id = aws_security_group.vault_lb[0].id
   type              = "ingress"
@@ -46,7 +45,7 @@ locals {
 
 resource "aws_lb" "vault_lb" {
   name                       = "${var.resource_name_prefix}-vault-lb"
-  internal                   = true
+  internal                   = false
   load_balancer_type         = var.lb_type
   subnets                    = var.lb_subnets
   security_groups            = local.lb_security_groups
@@ -92,4 +91,28 @@ resource "aws_lb_listener" "vault" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.vault.arn
   }
+}
+
+
+##########################
+#        DNS             #
+##########################
+
+resource "aws_route53_record" "dns_entry" {
+  zone_id = var.hosted_zone_id
+  name    = "vault.${var.resource_name_prefix}.${data.aws_route53_zone.hosted_zone.name}"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.vault_lb.dns_name
+    zone_id                = aws_lb.vault_lb.zone_id
+    evaluate_target_health = false
+  }
+
+  depends_on = [aws_lb_listener.vault]
+}
+
+data "aws_route53_zone" "hosted_zone" {
+  zone_id      = var.hosted_zone_id
+  private_zone = true
 }

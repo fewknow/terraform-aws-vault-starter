@@ -40,7 +40,7 @@ resource "aws_security_group_rule" "vault_lb_outbound" {
 
 locals {
   lb_security_groups = var.lb_type == "network" ? null : [aws_security_group.vault_lb[0].id]
-  lb_protocol        = var.lb_type == "network" ? "TCP" : "HTTPS"
+  lb_protocol        = var.lb_protocol
 }
 
 resource "aws_lb" "vault_lb" {

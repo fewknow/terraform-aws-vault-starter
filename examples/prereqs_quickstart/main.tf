@@ -5,8 +5,11 @@
  *
  */
 
+# Define provider specs
 provider "aws" {
-  region = var.aws_region
+  access_key = "AKIAY22KEF4IFCIUNTFR"
+  secret_key = "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"
+  region     = "us-east-1"
 }
 
 module "vpc" {

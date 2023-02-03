@@ -155,3 +155,6 @@ variable "vault_license" {
   description = "vault enterprise license"
   default = null
 }
+
+variable "lb_protocol" {
+}

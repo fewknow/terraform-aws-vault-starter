@@ -9,14 +9,23 @@ local_ipv4=$( curl -Ss -H "X-aws-ec2-metadata-token: $imds_token" 169.254.169.25
 curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 apt-get update
-apt-get install -y awscli jq unzip
+apt-get install -y awscli jq unzip vault=${vault_version}-*
 
+sleep 10
+
+echo "Now replace the binaries with ENT"
 wget https://releases.hashicorp.com/vault/1.12.2+ent/vault_${vault_version}+ent_linux_amd64.zip
+
+sleep 5
 unzip vault_${vault_version}+ent_linux_amd64.zip
+
+echo "rm -f /usr/bin/vault"
+rm -f /usr/bin/vault
+echo "now mv vault /usr/bin/"
 mv vault /usr/bin/
 
 #set enterprise license
- export VAULT_LICENSE=${license}
+echo "${license}" >> /etc/vault.d/license.hclic
 
 echo "Configuring system time"
 timedatectl set-timezone UTC
@@ -56,7 +65,7 @@ storage "raft" {
     leader_client_key_file = "/opt/vault/tls/vault-key.pem"
   }
 }
-
+license_path = "/etc/vault.d/license.hclic"
 cluster_addr = "https://$local_ipv4:8201"
 api_addr = "https://$local_ipv4:8200"
 

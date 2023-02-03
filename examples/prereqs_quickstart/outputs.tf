@@ -20,6 +20,12 @@ output "private_subnet_ids" {
   value       = module.vpc.private_subnet_ids
 }
 
+output "public_subnet_ids" {
+  description = "Private subnet IDs"
+  value       = module.vpc.public_subnet_ids
+}
+
+
 output "secrets_manager_arn" {
   description = "ARN of secrets_manager secret"
   value       = module.secrets.secrets_manager_arn

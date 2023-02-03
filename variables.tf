@@ -139,7 +139,7 @@ variable "user_supplied_userdata_path" {
 
 variable "vault_version" {
   type        = string
-  default     = "1.11.0"
+  default     = "1.12.2+ent"
   description = "Vault version"
 }
 

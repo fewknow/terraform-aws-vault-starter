@@ -150,11 +150,11 @@ variable "vpc_id" {
 
 variable "hosted_zone_id" {}
 
-variable "vault_license" {
-  type = string
-  description = "vault enterprise license"
-  default = null
-}
+#variable "vault_license" {
+#  type = string
+#  description = "vault enterprise license"
+#  default = null
+#}
 
 variable "lb_protocol" {
 }

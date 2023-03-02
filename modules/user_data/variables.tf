@@ -41,8 +41,8 @@ variable "vault_version" {
   description = "Vault version"
 }
 
-variable "vault_license" {
-  type = string
-  description = "vault enterprise license"
-  default = null
-}
+#variable "vault_license" {
+#  type = string
+#  description = "vault enterprise license"
+#  default = null
+#}

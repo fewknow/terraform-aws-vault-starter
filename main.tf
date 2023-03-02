@@ -59,7 +59,7 @@ module "user_data" {
   secrets_manager_arn         = var.secrets_manager_arn
   user_supplied_userdata_path = var.user_supplied_userdata_path
   vault_version               = var.vault_version
-  vault_license               = var.vault_license
+  #vault_license               = var.vault_license
 }
 
 locals {

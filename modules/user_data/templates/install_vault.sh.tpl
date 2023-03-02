@@ -13,8 +13,9 @@ apt-get install -y awscli jq unzip vault=${vault_version}-*
 
 sleep 10
 
-echo "Now replace the binaries with ENT"
-wget https://releases.hashicorp.com/vault/1.12.2+ent/vault_${vault_version}+ent_linux_amd64.zip
+# use for OSS
+#echo "Now replace the binaries with ENT"
+#wget https://releases.hashicorp.com/vault/1.12.2+ent/vault_${vault_version}+ent_linux_amd64.zip
 
 sleep 5
 unzip vault_${vault_version}+ent_linux_amd64.zip
@@ -24,8 +25,9 @@ rm -f /usr/bin/vault
 echo "now mv vault /usr/bin/"
 mv vault /usr/bin/
 
+# use for oss
 #set enterprise license
-echo "${license}" >> /etc/vault.d/license.hclic
+#echo "${license}" >> /etc/vault.d/license.hclic
 
 echo "Configuring system time"
 timedatectl set-timezone UTC

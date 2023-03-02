@@ -27,7 +27,7 @@ mv vault /usr/bin/
 
 # use for oss
 #set enterprise license
-#echo "${license}" >> /etc/vault.d/license.hclic
+
 
 echo "Configuring system time"
 timedatectl set-timezone UTC
